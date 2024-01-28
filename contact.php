@@ -1,8 +1,8 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $message = htmlspecialchars($_POST['message']);
+if (isset($_POST['submit'])) {
+    $name = htmlspecialchars($_POST(['name']));
+    $email = htmlspecialchars($_POST(['email']));
+    $message = htmlspecialchars($_POST(['message']));
 
     echo $name . ", " . $email . ", " . $message;
 }
@@ -11,69 +11,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 
+<!---------page title------->
 <?php
 $page_title = "Contact";
 include('./components/head.php');
 ?>
 
+<!---------body------->
 <body>
+
     <!---include header------->
     <?php include('./components/nav.php')
     ?>
 
-    <!DOCTYPE html>
-<html lang="en">
-    <?php
-    /*
-    if (isset($_POST['submit'])) {
-        $name = htmlspecialchars($_POST['name']);
-        $email + htmlspecialchars($_POST['email']);
-        $message = htmlspecialchars($_POST['message']);
-    }
+<h1>Contact Us!</h1>
 
-    PHP.NET
-    <form action="action.php" method="post">
-    <label for="name">Your name:</label>
-    <input name="name" id="name" type="text">
-
-    <label for="age">Your age:</label>
-    <input name="age" id="age" type="number">
-
-    <button type="submit">Submit</button>
-</form>
-
-*/
-?>
+<!---------contact form------->
  
-    <body>
-        
-            <form action="./contact.php" method="POST">
+<form action="./contact.php" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
 
-            <div class="input-fields">
-                <label for="name">Name</label><input type="text" name="name">
+    <br>
 
-                <label for="email">email</label><input type="email" name="email"  placeholder="Your email address">
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required>
 
-                <label for="message">Your message</label><textarea name="message" id="message" aria-label="message"></textarea>
+    <br>
 
-                <label for="submit">Submit</label><input type="submit" value="Send form">
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="6" required></textarea>
 
-            </form>
-        </div>
+    <br>
 
-
-    </body>
-
-    </html>
-
-
-    <!---w3 schools  
- <form action="welcome.php" method="post">
-Name: <input type="text" name="name"><br>
-E-mail: <input type="text" name="email"><br>
-<input type="submit">
+    <input type="submit" value="Submit">
 </form>
-    --->
+
     <!---include footer------->
     <?php include('./components/footer.php')
     ?>
